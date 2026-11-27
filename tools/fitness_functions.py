@@ -1,6 +1,6 @@
 """Fitness functions da seção 8 (equivalente ao ArchUnit em Python).
 
-O backend do Gird the Grid é Python 3.12+ (ADR de Linguagens), então o papel
+O backend do Gird the Grid é Python 3.12+ (ADR-005), então o papel
 que o ArchUnit cumpriria em Java fica com este módulo. Ele lê o código-fonte
 com ``ast``, sem importar nem executar nada, monta o grafo de dependências
 entre componentes e verifica as duas regras validadas da seção 8:

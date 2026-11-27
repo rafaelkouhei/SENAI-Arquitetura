@@ -9,7 +9,7 @@ Para garantir que as regras de dependência entre camadas não sejam violadas no
 
 #### Ferramenta: equivalente ao ArchUnit em Python
 
-O ArchUnit é uma biblioteca de Java. O backend do Gird the Grid é escrito em Python 3.12+, conforme a ADR 3 (Linguagens por camada), que substituiu a proposta inicial de Java com Spring Modulith. Por isso, as fitness functions foram escritas em Python, com `pytest`, e cumprem o mesmo papel do ArchUnit: leem a estrutura do código e reprovam o build quando uma regra de arquitetura é quebrada.
+O ArchUnit é uma biblioteca de Java. O backend do Gird the Grid é escrito em Python 3.12+, conforme a [ADR-005](../adr/ADR-005-stack-gateway-vetorial.md) (Seleção de Frameworks, Banco Vetorial e Stack do API Gateway), que substituiu a proposta inicial de Java com Spring Modulith. Por isso, as fitness functions foram escritas em Python, com `pytest`, e cumprem o mesmo papel do ArchUnit: leem a estrutura do código e reprovam o build quando uma regra de arquitetura é quebrada.
 
 A análise usa o módulo `ast` da biblioteca padrão. O código-fonte é lido como árvore sintática, sem ser importado nem executado, e a partir dele se monta o grafo de dependências entre os componentes da arquitetura Ports & Adapters definida na Sprint 2:
 
