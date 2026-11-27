@@ -1,0 +1,475 @@
+{
+  "limite_d": 0.1,
+  "componentes": [
+    {
+      "nome": "gird.apresentacao",
+      "kernel": false,
+      "arquivos": [
+        "gird/apresentacao/__init__.py",
+        "gird/apresentacao/servico_dashboard.py"
+      ],
+      "classes": [
+        "gird.apresentacao.servico_dashboard.AcessoNegadoErro",
+        "gird.apresentacao.servico_dashboard.ServicoDashboard"
+      ],
+      "abstratas": [],
+      "depende_de": [
+        "gird.monitoramento.portas",
+        "gird.tenants.portas"
+      ],
+      "dependentes": [],
+      "Ca": 0,
+      "Ce": 2,
+      "I": 1.0,
+      "Na": 0,
+      "Nc": 2,
+      "A": 0.0,
+      "D": 0.0,
+      "zona": "Sequência principal"
+    },
+    {
+      "nome": "gird.autonomico.implementacao",
+      "kernel": false,
+      "arquivos": [
+        "gird/autonomico/implementacao/__init__.py",
+        "gird/autonomico/implementacao/acl_scada.py",
+        "gird/autonomico/implementacao/estrategias.py",
+        "gird/autonomico/implementacao/guardrails_fisicos.py",
+        "gird/autonomico/implementacao/mape_k.py"
+      ],
+      "classes": [
+        "gird.autonomico.implementacao.acl_scada.AdaptadorScadaLegadoXml",
+        "gird.autonomico.implementacao.acl_scada.SimuladorScada",
+        "gird.autonomico.implementacao.estrategias.EstrategiaMaiorMargem",
+        "gird.autonomico.implementacao.estrategias.EstrategiaSoPrioritarios",
+        "gird.autonomico.implementacao.estrategias.EstrategiaSugeridaPorIA",
+        "gird.autonomico.implementacao.guardrails_fisicos.EnvelopeOperacional",
+        "gird.autonomico.implementacao.guardrails_fisicos.GuardrailLimiteTermico",
+        "gird.autonomico.implementacao.guardrails_fisicos.GuardrailFaixaTensao",
+        "gird.autonomico.implementacao.guardrails_fisicos.GuardrailIntertravamento",
+        "gird.autonomico.implementacao.guardrails_fisicos.GuardrailConservacaoCarga",
+        "gird.autonomico.implementacao.guardrails_fisicos.GuardrailTaxaManobras",
+        "gird.autonomico.implementacao.guardrails_fisicos.CadeiaGuardrails",
+        "gird.autonomico.implementacao.mape_k.MonitorRede",
+        "gird.autonomico.implementacao.mape_k.AnalisadorFalhaSubestacao",
+        "gird.autonomico.implementacao.mape_k.PlanejadorComGuardrails",
+        "gird.autonomico.implementacao.mape_k.ExecutorManobras",
+        "gird.autonomico.implementacao.mape_k.BaseConhecimentoRede",
+        "gird.autonomico.implementacao.mape_k.FilaAprovacaoOperador",
+        "gird.autonomico.implementacao.mape_k.RelatorioIteracao",
+        "gird.autonomico.implementacao.mape_k.CicloAutonomico"
+      ],
+      "abstratas": [],
+      "depende_de": [
+        "gird.autonomico.portas",
+        "gird.ia.portas",
+        "gird.monitoramento.portas",
+        "gird.seguranca.portas"
+      ],
+      "dependentes": [],
+      "Ca": 0,
+      "Ce": 4,
+      "I": 1.0,
+      "Na": 0,
+      "Nc": 20,
+      "A": 0.0,
+      "D": 0.0,
+      "zona": "Sequência principal"
+    },
+    {
+      "nome": "gird.autonomico.portas",
+      "kernel": false,
+      "arquivos": [
+        "gird/autonomico/portas/__init__.py",
+        "gird/autonomico/portas/contratos.py"
+      ],
+      "classes": [
+        "gird.autonomico.portas.contratos.IMonitor",
+        "gird.autonomico.portas.contratos.IAnalisador",
+        "gird.autonomico.portas.contratos.IEstrategiaRedistribuicao",
+        "gird.autonomico.portas.contratos.IGuardrailFisico",
+        "gird.autonomico.portas.contratos.IPlanejador",
+        "gird.autonomico.portas.contratos.IGatewayManobra",
+        "gird.autonomico.portas.contratos.IExecutor",
+        "gird.autonomico.portas.contratos.IAprovacaoHumana",
+        "gird.autonomico.portas.contratos.IBaseConhecimento"
+      ],
+      "abstratas": [
+        "gird.autonomico.portas.contratos.IMonitor",
+        "gird.autonomico.portas.contratos.IAnalisador",
+        "gird.autonomico.portas.contratos.IEstrategiaRedistribuicao",
+        "gird.autonomico.portas.contratos.IGuardrailFisico",
+        "gird.autonomico.portas.contratos.IPlanejador",
+        "gird.autonomico.portas.contratos.IGatewayManobra",
+        "gird.autonomico.portas.contratos.IExecutor",
+        "gird.autonomico.portas.contratos.IAprovacaoHumana",
+        "gird.autonomico.portas.contratos.IBaseConhecimento"
+      ],
+      "depende_de": [],
+      "dependentes": [
+        "gird.autonomico.implementacao"
+      ],
+      "Ca": 1,
+      "Ce": 0,
+      "I": 0.0,
+      "Na": 9,
+      "Nc": 9,
+      "A": 1.0,
+      "D": 0.0,
+      "zona": "Sequência principal"
+    },
+    {
+      "nome": "gird.ia.implementacao",
+      "kernel": false,
+      "arquivos": [
+        "gird/ia/implementacao/__init__.py",
+        "gird/ia/implementacao/guardrails_ia.py",
+        "gird/ia/implementacao/motor_ia.py"
+      ],
+      "classes": [
+        "gird.ia.implementacao.guardrails_ia.SanitizadorPII",
+        "gird.ia.implementacao.guardrails_ia.ValidadorJsonSchema",
+        "gird.ia.implementacao.motor_ia.RecuperadorVetorialMemoria",
+        "gird.ia.implementacao.motor_ia.RoteadorModelos",
+        "gird.ia.implementacao.motor_ia.AssistentePlanejamentoIA",
+        "gird.ia.implementacao.motor_ia.ModeloSimulado"
+      ],
+      "abstratas": [],
+      "depende_de": [
+        "gird.ia.portas"
+      ],
+      "dependentes": [],
+      "Ca": 0,
+      "Ce": 1,
+      "I": 1.0,
+      "Na": 0,
+      "Nc": 6,
+      "A": 0.0,
+      "D": 0.0,
+      "zona": "Sequência principal"
+    },
+    {
+      "nome": "gird.ia.portas",
+      "kernel": false,
+      "arquivos": [
+        "gird/ia/portas/__init__.py",
+        "gird/ia/portas/contratos.py"
+      ],
+      "classes": [
+        "gird.ia.portas.contratos.IModeloLinguagem",
+        "gird.ia.portas.contratos.IRecuperadorContexto",
+        "gird.ia.portas.contratos.ISanitizadorPII",
+        "gird.ia.portas.contratos.IValidadorSaida",
+        "gird.ia.portas.contratos.IAssistentePlanejamento"
+      ],
+      "abstratas": [
+        "gird.ia.portas.contratos.IModeloLinguagem",
+        "gird.ia.portas.contratos.IRecuperadorContexto",
+        "gird.ia.portas.contratos.ISanitizadorPII",
+        "gird.ia.portas.contratos.IValidadorSaida",
+        "gird.ia.portas.contratos.IAssistentePlanejamento"
+      ],
+      "depende_de": [],
+      "dependentes": [
+        "gird.autonomico.implementacao",
+        "gird.ia.implementacao"
+      ],
+      "Ca": 2,
+      "Ce": 0,
+      "I": 0.0,
+      "Na": 5,
+      "Nc": 5,
+      "A": 1.0,
+      "D": 0.0,
+      "zona": "Sequência principal"
+    },
+    {
+      "nome": "gird.ingestao.implementacao",
+      "kernel": false,
+      "arquivos": [
+        "gird/ingestao/implementacao/__init__.py",
+        "gird/ingestao/implementacao/acl/__init__.py",
+        "gird/ingestao/implementacao/acl/adaptadores.py",
+        "gird/ingestao/implementacao/conectores/__init__.py",
+        "gird/ingestao/implementacao/conectores/fabrica.py",
+        "gird/ingestao/implementacao/eip.py",
+        "gird/ingestao/implementacao/fila_kafka.py",
+        "gird/ingestao/implementacao/pipeline.py",
+        "gird/ingestao/implementacao/reconciliador.py"
+      ],
+      "classes": [
+        "gird.ingestao.implementacao.acl.adaptadores.PayloadInvalidoErro",
+        "gird.ingestao.implementacao.acl.adaptadores.AdaptadorFabricanteA",
+        "gird.ingestao.implementacao.acl.adaptadores.AdaptadorFabricanteB",
+        "gird.ingestao.implementacao.acl.adaptadores.AdaptadorConcentradorLegadoXml",
+        "gird.ingestao.implementacao.conectores.fabrica.CriadorConectorMqtt",
+        "gird.ingestao.implementacao.conectores.fabrica.CriadorConectorGrpc",
+        "gird.ingestao.implementacao.conectores.fabrica.CriadorConectorLegado",
+        "gird.ingestao.implementacao.conectores.fabrica.RegistroConectores",
+        "gird.ingestao.implementacao.eip.EnriquecedorCadastroTecnico",
+        "gird.ingestao.implementacao.eip.RoteadorPorConteudo",
+        "gird.ingestao.implementacao.fila_kafka.FilaKafka",
+        "gird.ingestao.implementacao.fila_kafka.FilaEmMemoria",
+        "gird.ingestao.implementacao.pipeline.PipelineIngestao",
+        "gird.ingestao.implementacao.reconciliador.ReconciliadorPorSequencia",
+        "gird.ingestao.implementacao.reconciliador.GatewayMedidoresMtls"
+      ],
+      "abstratas": [],
+      "depende_de": [
+        "gird.ingestao.portas",
+        "gird.tenants.portas"
+      ],
+      "dependentes": [],
+      "Ca": 0,
+      "Ce": 2,
+      "I": 1.0,
+      "Na": 0,
+      "Nc": 15,
+      "A": 0.0,
+      "D": 0.0,
+      "zona": "Sequência principal"
+    },
+    {
+      "nome": "gird.ingestao.portas",
+      "kernel": false,
+      "arquivos": [
+        "gird/ingestao/portas/__init__.py",
+        "gird/ingestao/portas/contratos.py"
+      ],
+      "classes": [
+        "gird.ingestao.portas.contratos.IAdaptadorFabricante",
+        "gird.ingestao.portas.contratos.CriadorConector",
+        "gird.ingestao.portas.contratos.IFilaProvider",
+        "gird.ingestao.portas.contratos.IEventoProvider",
+        "gird.ingestao.portas.contratos.IMedidorGateway",
+        "gird.ingestao.portas.contratos.IReconciliador"
+      ],
+      "abstratas": [
+        "gird.ingestao.portas.contratos.IAdaptadorFabricante",
+        "gird.ingestao.portas.contratos.CriadorConector",
+        "gird.ingestao.portas.contratos.IFilaProvider",
+        "gird.ingestao.portas.contratos.IEventoProvider",
+        "gird.ingestao.portas.contratos.IMedidorGateway",
+        "gird.ingestao.portas.contratos.IReconciliador"
+      ],
+      "depende_de": [],
+      "dependentes": [
+        "gird.ingestao.implementacao"
+      ],
+      "Ca": 1,
+      "Ce": 0,
+      "I": 0.0,
+      "Na": 6,
+      "Nc": 6,
+      "A": 1.0,
+      "D": 0.0,
+      "zona": "Sequência principal"
+    },
+    {
+      "nome": "gird.monitoramento.implementacao",
+      "kernel": false,
+      "arquivos": [
+        "gird/monitoramento/implementacao/__init__.py",
+        "gird/monitoramento/implementacao/projecao_rede.py"
+      ],
+      "classes": [
+        "gird.monitoramento.implementacao.projecao_rede.ProjecaoEstadoRede",
+        "gird.monitoramento.implementacao.projecao_rede.NotificadorAlarmes"
+      ],
+      "abstratas": [],
+      "depende_de": [
+        "gird.monitoramento.portas"
+      ],
+      "dependentes": [],
+      "Ca": 0,
+      "Ce": 1,
+      "I": 1.0,
+      "Na": 0,
+      "Nc": 2,
+      "A": 0.0,
+      "D": 0.0,
+      "zona": "Sequência principal"
+    },
+    {
+      "nome": "gird.monitoramento.portas",
+      "kernel": false,
+      "arquivos": [
+        "gird/monitoramento/portas/__init__.py",
+        "gird/monitoramento/portas/contratos.py"
+      ],
+      "classes": [
+        "gird.monitoramento.portas.contratos.IMonitoramentoDataProvider",
+        "gird.monitoramento.portas.contratos.IAlarmeNotifier"
+      ],
+      "abstratas": [
+        "gird.monitoramento.portas.contratos.IMonitoramentoDataProvider",
+        "gird.monitoramento.portas.contratos.IAlarmeNotifier"
+      ],
+      "depende_de": [],
+      "dependentes": [
+        "gird.apresentacao",
+        "gird.autonomico.implementacao",
+        "gird.monitoramento.implementacao"
+      ],
+      "Ca": 3,
+      "Ce": 0,
+      "I": 0.0,
+      "Na": 2,
+      "Nc": 2,
+      "A": 1.0,
+      "D": 0.0,
+      "zona": "Sequência principal"
+    },
+    {
+      "nome": "gird.nucleo",
+      "kernel": true,
+      "arquivos": [
+        "gird/nucleo/__init__.py",
+        "gird/nucleo/modelos.py",
+        "gird/nucleo/resiliencia.py"
+      ],
+      "classes": [
+        "gird.nucleo.modelos.LeituraTelemetria",
+        "gird.nucleo.modelos.AcaoChave",
+        "gird.nucleo.modelos.Alimentador",
+        "gird.nucleo.modelos.ChaveManobra",
+        "gird.nucleo.modelos.Manobra",
+        "gird.nucleo.modelos.PlanoManobra",
+        "gird.nucleo.modelos.FalhaSubestacao",
+        "gird.nucleo.modelos.Sintomas",
+        "gird.nucleo.modelos.ResultadoValidacao",
+        "gird.nucleo.modelos.ResultadoExecucao",
+        "gird.nucleo.modelos.Topologia",
+        "gird.nucleo.resiliencia.EstadoCircuito",
+        "gird.nucleo.resiliencia.CircuitoAbertoErro",
+        "gird.nucleo.resiliencia.CircuitBreaker"
+      ],
+      "abstratas": [],
+      "depende_de": [],
+      "dependentes": [
+        "gird.autonomico.implementacao",
+        "gird.autonomico.portas",
+        "gird.ia.implementacao",
+        "gird.ingestao.implementacao",
+        "gird.ingestao.portas",
+        "gird.monitoramento.implementacao",
+        "gird.monitoramento.portas",
+        "gird.seguranca.implementacao"
+      ],
+      "Ca": 8,
+      "Ce": 0,
+      "I": 0.0,
+      "Na": 0,
+      "Nc": 14,
+      "A": 0.0,
+      "D": 1.0,
+      "zona": "Zona de Dor tolerada (kernel não-volátil)"
+    },
+    {
+      "nome": "gird.seguranca.implementacao",
+      "kernel": false,
+      "arquivos": [
+        "gird/seguranca/implementacao/__init__.py",
+        "gird/seguranca/implementacao/trilha_auditoria.py"
+      ],
+      "classes": [
+        "gird.seguranca.implementacao.trilha_auditoria.TrilhaAuditoriaEncadeada"
+      ],
+      "abstratas": [],
+      "depende_de": [
+        "gird.seguranca.portas"
+      ],
+      "dependentes": [],
+      "Ca": 0,
+      "Ce": 1,
+      "I": 1.0,
+      "Na": 0,
+      "Nc": 1,
+      "A": 0.0,
+      "D": 0.0,
+      "zona": "Sequência principal"
+    },
+    {
+      "nome": "gird.seguranca.portas",
+      "kernel": false,
+      "arquivos": [
+        "gird/seguranca/portas/__init__.py",
+        "gird/seguranca/portas/contratos.py"
+      ],
+      "classes": [
+        "gird.seguranca.portas.contratos.IRegistroAuditoria"
+      ],
+      "abstratas": [
+        "gird.seguranca.portas.contratos.IRegistroAuditoria"
+      ],
+      "depende_de": [],
+      "dependentes": [
+        "gird.autonomico.implementacao",
+        "gird.seguranca.implementacao"
+      ],
+      "Ca": 2,
+      "Ce": 0,
+      "I": 0.0,
+      "Na": 1,
+      "Nc": 1,
+      "A": 1.0,
+      "D": 0.0,
+      "zona": "Sequência principal"
+    },
+    {
+      "nome": "gird.tenants.implementacao",
+      "kernel": false,
+      "arquivos": [
+        "gird/tenants/implementacao/__init__.py",
+        "gird/tenants/implementacao/repositorio_tenants.py"
+      ],
+      "classes": [
+        "gird.tenants.implementacao.repositorio_tenants.RepositorioTenantsMemoria"
+      ],
+      "abstratas": [],
+      "depende_de": [
+        "gird.tenants.portas"
+      ],
+      "dependentes": [],
+      "Ca": 0,
+      "Ce": 1,
+      "I": 1.0,
+      "Na": 0,
+      "Nc": 1,
+      "A": 0.0,
+      "D": 0.0,
+      "zona": "Sequência principal"
+    },
+    {
+      "nome": "gird.tenants.portas",
+      "kernel": false,
+      "arquivos": [
+        "gird/tenants/portas/__init__.py",
+        "gird/tenants/portas/contratos.py"
+      ],
+      "classes": [
+        "gird.tenants.portas.contratos.ITenantProvider",
+        "gird.tenants.portas.contratos.IUnidadeConsumidoraProvider"
+      ],
+      "abstratas": [
+        "gird.tenants.portas.contratos.ITenantProvider",
+        "gird.tenants.portas.contratos.IUnidadeConsumidoraProvider"
+      ],
+      "depende_de": [],
+      "dependentes": [
+        "gird.apresentacao",
+        "gird.ingestao.implementacao",
+        "gird.tenants.implementacao"
+      ],
+      "Ca": 3,
+      "Ce": 0,
+      "I": 0.0,
+      "Na": 2,
+      "Nc": 2,
+      "A": 1.0,
+      "D": 0.0,
+      "zona": "Sequência principal"
+    }
+  ],
+  "violacoes_sdp": []
+}
