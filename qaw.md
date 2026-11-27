@@ -1,0 +1,11 @@
+## 2. Atributos de Qualidade e Matriz QAW
+
+Os atributos de qualidade prioritários foram definidos no Quality Attribute Workshop (QAW) com base nos *trade-offs* essenciais do sistema e no alinhamento entre as exigências regulatórias do setor elétrico e a capacidade operacional da equipe:
+
+| Atributo de Qualidade | Cenário Padronizado (Fonte -> Estímulo -> Artefato -> Ambiente -> Resposta) | Medida da Resposta (Métrica Objetivo) |
+| :--- | :--- | :--- |
+| **Segurança (Tier 1)** | Usuário do Tenant A ou agente externo mal-intencionado tenta acessar dados do Tenant B ou alterar logs no sistema multi-tenant sob operação normal [5, 6]. | **0 vazamentos de dados cruzados** entre tenants (meta absoluta); 100% dos registros de auditoria mantidos em armazenamento imutável (WORM) com comunicação mTLS/JWT [5, 7, 8]. |
+| **Disponibilidade / Resiliência (Tier 1)** | Queda de servidor/nó da aplicação ou falha de infraestrutura em uma Zona de Disponibilidade sob carga normal de produção [9, 10]. | Redirecionamento automático para réplicas saudáveis distribuídas em 3 zonas de disponibilidade; **indisponibilidade acumulada ≤ 52,56 min/ano** (SLA 99,99%) e RTO ≤ 5 min [9, 11, 12]. |
+| **Desempenho / Latência (Tier 2)** | Medidores de campo enviam leituras de telemetria continuamente enquanto operadores realizam consultas concorrentes nos dashboards operacionais [13, 14]. | Processamento da ingestão e atualização incremental do dashboard em tempo quase real; **latência de resposta de API p95 < 250ms** e latência ponta a ponta ≤ 30s [4, 13, 15]. |
+| **Escalabilidade / Elasticidade (Tier 2)** | Onboarding de nova distribuidora com salto na ingestão de telemetria de 111 para até 31.667 eventos/s durante picos de eventos de rede [16, 17]. | Provisionamento sem redesenho estrutural [16, 18], acionando **autoescalonamento horizontal** das réplicas *stateless* e absorção de picos pelo buffer Apache Kafka com **0% de perda de eventos** [17, 19, 20]. |
+| **Auditabilidade / Rastreabilidade (Tier 3)** | Equipe de segurança (SOC) ou órgãos reguladores solicitam reconstrução da linha do tempo de relatórios de tentativas de intrusão [21, 22]. | **100% dos eventos de acesso e segurança registrados sem lacunas** [21], com integridade verificável e rastreabilidade total de atores, timestamps e recursos afetados [8, 11]. |
